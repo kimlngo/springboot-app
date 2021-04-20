@@ -1,7 +1,6 @@
-package payroll;
+package payroll.entity;
 
-enum Status {
-
+public enum Status {
     IN_PROGRESS,
     COMPLETED,
     CANCELLED

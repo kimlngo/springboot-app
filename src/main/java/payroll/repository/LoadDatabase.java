@@ -1,4 +1,4 @@
-package payroll;
+package payroll.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,17 +6,22 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import payroll.entity.Employee;
+import payroll.entity.Order;
+import payroll.entity.Status;
+
 @Configuration
-class LoadDatabase {
+public class LoadDatabase {
 
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(EmployeeRepository employeeRepository, OrderRepository orderRepository) {
+    public CommandLineRunner initDatabase(EmployeeRepository employeeRepository, OrderRepository orderRepository) {
 
         return args -> {
             log.info("Preloading " + employeeRepository.save(new Employee("Bilbo", "Baggins", "burglar")));
             log.info("Preloading " + employeeRepository.save(new Employee("Frodo", "Baggins", "thief")));
+            log.info("Preloading " + employeeRepository.save(new Employee("Kim Long", "Ngo ", "software engineer")));
             
             employeeRepository.findAll().forEach(employee -> log.info("Preloaded " + employee));
 
