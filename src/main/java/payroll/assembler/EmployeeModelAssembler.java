@@ -15,7 +15,8 @@ public class EmployeeModelAssembler implements RepresentationModelAssembler<Empl
     @Override
     public EntityModel<Employee> toModel(Employee employee) {
 
-        return EntityModel.of(employee, //
-                linkTo(methodOn(EmployeeController.class).one(employee.getId())).withSelfRel(), linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
+        return EntityModel.of(employee,
+                linkTo(methodOn(EmployeeController.class).getEmployeeById(employee.getId())).withSelfRel(),
+                linkTo(methodOn(EmployeeController.class).getAllEmployees()).withRel("employees"));
     }
 }
