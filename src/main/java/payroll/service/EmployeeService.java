@@ -1,6 +1,6 @@
 package payroll.service;
 
-import org.springframework.data.crossstore.ChangeSetPersister;
+import lombok.AllArgsConstructor;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
 import payroll.assembler.EmployeeModelAssembler;
@@ -11,14 +11,10 @@ import payroll.repository.EmployeeRepository;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class EmployeeService {
     private final EmployeeRepository repository;
     private final EmployeeModelAssembler assembler;
-
-    public EmployeeService(EmployeeRepository repository, EmployeeModelAssembler assembler) {
-        this.repository = repository;
-        this.assembler = assembler;
-    }
 
     public List<EntityModel<Employee>> getAllEmployees() {
         return repository.findAll()
